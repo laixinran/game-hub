@@ -1,29 +1,10 @@
-import React, { useState, useEffect } from "react";
-import apiClient from "../services/api-client";
 import { Text } from "@chakra-ui/react";
-
-interface Game {
-  id: number;
-  name: string;
-}
-
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
+import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
+  const { games, error } = useGames();
 
-  //use the effect hook to send the fetch request to the backend
-  useEffect(() => {
-    apiClient
-      .get<FetchGamesResponse>("/games")
-      .then((res) => setGames(res.data.results))
-      .catch((error) => setError(error.message));
-  });
-
+  //note: components should be primarily responsible for returning mark-up and handling user interaction at a high level
   return (
     <>
       {error && <Text>{error}</Text>}
