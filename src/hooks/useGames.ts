@@ -30,7 +30,7 @@ const useGames = () => {
 
   //use the effect hook to send the fetch request to the backend
   useEffect(() => {
-    const controller = new AbortController(); //to handle concellation
+    const controller = new AbortController(); //to handle cancellation
 
     apiClient
       .get<FetchGamesResponse>("/games", {signal: controller.signal})
