@@ -9,7 +9,7 @@ export interface Genre {
 
 // create a custom hook for fetching genres
 const useGenres = () => {
-   return useData<Genre>("/genres");
+   return useData<Genre>('/genres');
 }
 
 export default useGenres;
